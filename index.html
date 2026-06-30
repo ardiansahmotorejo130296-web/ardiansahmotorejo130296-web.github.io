@@ -1981,27 +1981,39 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
             help: `Daftar perintah:<br>
                    - <b>whoami</b>: Info profil<br>
                    - <b>skills</b>: Keahlian teknis<br>
+                   - <b>ls</b>: Lihat daftar file<br>
                    - <b>cat resume.pdf</b>: Lihat CV<br>
                    - <b>sudo hire_me</b>: Eksekusi tawaran kerja<br>
-                   - <b>scan_network</b>: Pindai infrastruktur (Simulasi)<br>
+                   - <b>nmap</b>: Pindai infrastruktur (Simulasi)<br>
                    - <b>clear</b>: Bersihkan layar`,
             whoami: `Cyber Phantom ID - Security Specialist.<br>
                     Siap berkontribusi secara remote global.`,
+            pwd: `/home/guest`,
+            ls: `<span style="color: var(--accent-cyan)">resume.pdf</span> &nbsp;&nbsp; <span style="color: var(--accent-neon)">portfolio_data/</span> &nbsp;&nbsp; secret_keys.txt`,
             skills: `Pentesting Web & API, Cloud Audit, Automation Scripting.`,
+            'cat secret_keys.txt': `<span style="color: var(--accent-red)">Permission denied. You need root privileges.</span>`,
+            'sudo su': `<span style="color: var(--accent-red)">This incident will be reported.</span>`,
             'cat resume.pdf': `<span style="color: var(--text-muted)">[PDF Parsing...]</span><br>
                                Nama: Cyber Phantom ID<br>
                                Posisi: Remote Bug Hunter & Pentester<br>
                                Sertifikasi: OSCP, CEH<br>
-                               <span style="color: var(--accent-cyan)">> Gunakan form kontak di bawah untuk meminta CV asli.</span>`,
+                               <span style="color: var(--accent-cyan)">> Silakan klik tombol 'Download CV' di navigasi atas untuk dokumen asli.</span>`,
             'sudo hire_me': `<span style="color: var(--accent-neon); font-weight: bold;">[ACCESS GRANTED]</span><br>
                              Excellent choice! You are about to hire a top-tier security professional.<br>
                              Initiating secure handshake protocols... Please scroll down to the Contact Section.`,
         };
 
+        // Auto-focus terminal input when clicking anywhere on the terminal widget
+        document.querySelector('.terminal-widget').addEventListener('click', () => {
+            terminalInput.focus();
+        });
+
         terminalInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 const cmd = this.value.trim().toLowerCase();
                 this.value = '';
+
+                if (cmd === '') return; // Abaikan jika kosong
 
                 const promptLine = document.createElement('div');
                 promptLine.className = 'terminal-line';
@@ -2011,7 +2023,7 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
                 const resultLine = document.createElement('div');
                 if (cmd === 'clear') {
                     terminalHistory.innerHTML = '';
-                } else if (cmd === 'scan_network') {
+                } else if (cmd === 'scan_network' || cmd === 'nmap') {
                     resultLine.innerHTML = `<span style="color: var(--accent-cyan)">Starting Nmap 7.93 ( https://nmap.org )</span><br>`;
                     terminalHistory.appendChild(resultLine);
                     

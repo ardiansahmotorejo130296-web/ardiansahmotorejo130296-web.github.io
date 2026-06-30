@@ -1441,6 +1441,17 @@
             .remote-features { gap: 2rem; }
             .custom-cursor { display: none; } /* Disable custom cursor on smaller screens/touch */
         }
+        
+        /* Mobile-Specific Typography Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .terminal-widget { font-size: 0.85rem; }
+            .terminal-body { padding: 15px; }
+            .trusted-by p { font-size: 0.7rem; }
+            .marquee-content span { font-size: 1rem; }
+        }
         /* --- Wall of Fame Marquee --- */
         .trusted-by { text-align: center; margin: 40px 0; border-top: 1px solid rgba(0,255,102,0.1); border-bottom: 1px solid rgba(0,255,102,0.1); padding: 20px 0; background: rgba(0,0,0,0.3); }
         .trusted-by p { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px; font-weight: bold; }

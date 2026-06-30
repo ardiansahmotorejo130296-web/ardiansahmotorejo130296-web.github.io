@@ -1669,24 +1669,24 @@
         </div>
     </section>
 
-    <!-- POC Simulator Section -->
+    <!-- POC Demonstration Section -->
     <section class="section-container" id="projects">
-        <h2 class="section-title">Exploit <span>Simulator</span></h2>
+        <h2 class="section-title">Attack Vector <span>Execution</span></h2>
         <div class="poc-simulator">
-            <div class="poc-badge">Interactive System</div>
+            <div class="poc-badge">Live PoC Terminal</div>
             <div class="poc-grid">
                 <div class="poc-controls">
-                    <h3>Simulasi Kerentanan</h3>
-                    <p>Coba pilih tipe exploit siber di bawah untuk melihat visualisasi alur eksploitasi serangan siber secara interaktif dan cara mitigasinya.</p>
+                    <h3>Automated Exploit Log</h3>
+                    <p>Pilih vektor serangan di bawah ini untuk melihat *log* eksekusi *Proof-of-Concept* (PoC) interaktif dari kerentanan yang sering saya eksploitasi pada lingkungan *sandbox*.</p>
                     <select class="poc-select hover-target" id="exploit-select">
-                        <option value="">-- Pilih Simulasi Exploit --</option>
-                        <option value="sqli">SQL Injection (SQLi) Bypass</option>
-                        <option value="ssrf">Server-Side Request Forgery (SSRF)</option>
-                        <option value="idor">IDOR (Insecure Direct Object Reference)</option>
+                        <option value="">-- Pilih Target Eksekusi --</option>
+                        <option value="sqli">Auth Bypass (SQL Injection)</option>
+                        <option value="ssrf">Cloud Instance Takeover (SSRF)</option>
+                        <option value="idor">Mass Data Manipulation (IDOR)</option>
                     </select>
                 </div>
                 <div class="poc-demo-screen" id="poc-screen">
-                    <div style="color: var(--text-muted)">[System] Menunggu pilihan simulasi dari Anda...</div>
+                    <div style="color: var(--text-muted)">[System] Menunggu input modul serangan dari Anda...</div>
                 </div>
             </div>
         </div>
@@ -2118,25 +2118,28 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
             });
         });
 
-        // --- POC Exploit Simulator Logic ---
+        // --- POC Exploit Execution Logic ---
         const exploitSelect = document.getElementById('exploit-select');
         const pocScreen = document.getElementById('poc-screen');
 
         const simulations = {
             sqli: [
-                { text: "[*] Inisiasi serangan SQL Injection Bypass...", color: "var(--text-muted)" },
-                { text: "[+] Mengirim Payload: admin' OR '1'='1", color: "var(--accent-cyan)" },
-                { text: "[+] SUCCESS: Bypass login berhasil. Masuk sebagai Administrator.", color: "var(--accent-neon)", bold: true }
+                { text: "[*] Inisiasi modul SQLmap (Automated Payload Injection)...", color: "var(--text-muted)" },
+                { text: "[+] Mengirim Payload: admin' OR '1'='1' --", color: "var(--accent-cyan)" },
+                { text: "[!] WAF Bypassed successfully.", color: "var(--text-muted)" },
+                { text: "[+] SUCCESS: Bypass login berhasil. Akses Root/Administrator diperoleh.", color: "var(--accent-neon)", bold: true }
             ],
             ssrf: [
-                { text: "[*] Inisiasi serangan SSRF Cloud Metadata...", color: "var(--text-muted)" },
-                { text: "[+] Mengirim request ke AWS Metadata IP...", color: "var(--accent-cyan)" },
-                { text: "[+] KONEKSI BERHASIL: Mendapatkan data AWS IAM Credentials!", color: "var(--accent-neon)", bold: true }
+                { text: "[*] Mengeksploitasi celah webhook internal (SSRF)...", color: "var(--text-muted)" },
+                { text: "[+] Mengalihkan traffic ke AWS Metadata (169.254.169.254/latest/meta-data/iam/security-credentials/)", color: "var(--accent-cyan)" },
+                { text: "[!] Target vulnerable. Mengunduh Token sementara AWS...", color: "var(--text-muted)" },
+                { text: "[+] KONEKSI BERHASIL: Kredensial AWS IAM berhasil diekstraksi!", color: "var(--accent-neon)", bold: true }
             ],
             idor: [
-                { text: "[*] Inisiasi pengujian kerentanan IDOR...", color: "var(--text-muted)" },
-                { text: "[+] Endpoint: POST /api/v1/update_profile {'id': 1001}", color: "var(--accent-cyan)" },
-                { text: "[!] Kritis: Modifikasi profil user lain berhasil!", color: "var(--accent-red)", bold: true }
+                { text: "[*] Menganalisis endpoint API: POST /api/v1/update_profile", color: "var(--text-muted)" },
+                { text: "[+] Mengganti parameter {'id': 1001} ke {'id': 1002} milik CEO...", color: "var(--accent-cyan)" },
+                { text: "[!] Tidak ada validasi otoritas di sisi server.", color: "var(--text-muted)" },
+                { text: "[+] KRITIS: Profil CEO berhasil dimodifikasi secara sewenang-wenang!", color: "var(--accent-red)", bold: true }
             ]
         };
 
@@ -2145,7 +2148,7 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
             pocScreen.innerHTML = '';
             
             if (!val || !simulations[val]) {
-                pocScreen.innerHTML = '<div style="color: var(--text-muted)">[System] Menunggu pilihan simulasi...</div>';
+                pocScreen.innerHTML = '<div style="color: var(--text-muted)">[System] Menunggu input modul serangan dari Anda...</div>';
                 return;
             }
 

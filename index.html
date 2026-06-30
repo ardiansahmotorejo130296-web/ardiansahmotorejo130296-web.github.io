@@ -1509,7 +1509,7 @@
         <div class="nav-container">
             <a href="#" class="logo">Sec<span>Ops</span></a>
             
-            <div class="mobile-toggle" id="mobile-toggle">
+            <div class="mobile-toggle" id="mobile-toggle" onclick="toggleMenu()">
                 <span></span><span></span><span></span>
             </div>
 
@@ -2211,10 +2211,9 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
         }
 
         // --- Mobile Menu Toggle ---
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mainNav = document.getElementById('main-nav');
-        
-        mobileToggle.addEventListener('click', () => {
+        function toggleMenu() {
+            const mainNav = document.getElementById('main-nav');
+            const mobileToggle = document.getElementById('mobile-toggle');
             mainNav.classList.toggle('active');
             
             // Animate hamburger
@@ -2228,13 +2227,14 @@ aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
             }
-        });
+        }
         
         // Close menu on link click
-        mainNav.querySelectorAll('a').forEach(link => {
+        document.getElementById('main-nav').querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
+                const mainNav = document.getElementById('main-nav');
                 if(mainNav.classList.contains('active')) {
-                    mobileToggle.click();
+                    toggleMenu();
                 }
             });
         });

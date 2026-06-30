@@ -1449,6 +1449,33 @@
             .remote-features { gap: 2rem; }
             .custom-cursor { display: none; } /* Disable custom cursor on smaller screens/touch */
         }
+        /* --- Wall of Fame Marquee --- */
+        .trusted-by { text-align: center; margin: 40px 0; border-top: 1px solid rgba(0,255,102,0.1); border-bottom: 1px solid rgba(0,255,102,0.1); padding: 20px 0; background: rgba(0,0,0,0.3); }
+        .trusted-by p { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px; font-weight: bold; }
+        .marquee { overflow: hidden; white-space: nowrap; width: 100%; display: flex; }
+        .marquee-content { display: flex; animation: marquee 20s linear infinite; gap: 50px; padding-left: 50px; }
+        .marquee-content span { color: rgba(255,255,255,0.4); font-family: 'Fira Code', monospace; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; transition: color 0.3s; }
+        .marquee-content span:hover { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- Services Grid --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
+        .service-card { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(0, 255, 102, 0.2); padding: 30px 20px; text-align: center; border-radius: 8px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-neon), transparent); opacity: 0; transition: opacity 0.3s; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1); }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon { font-size: 3rem; margin-bottom: 15px; }
+        .service-card h3 { color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 1px; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- Digital Badges --- */
+        .badges-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        .cert-badge { display: flex; flex-direction: column; align-items: center; position: relative; width: 120px; cursor: default; }
+        .badge-ring { width: 80px; height: 80px; border: 2px dashed var(--accent-neon); border-radius: 50%; display: flex; justify-content: center; align-items: center; animation: spin 10s linear infinite; position: absolute; top: 0; }
+        .badge-content { width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-family: 'Fira Code', monospace; color: var(--accent-neon); z-index: 2; text-shadow: 0 0 10px rgba(0,255,102,0.5); font-size: 1.2rem; }
+        .badge-label { margin-top: 90px; color: var(--text-muted); font-size: 0.8rem; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .cert-badge:hover .badge-ring { animation: spin 2s linear infinite; border-style: solid; box-shadow: 0 0 20px currentColor; }
     </style>
 </head>
 <body>
@@ -1565,6 +1592,69 @@
             <div class="stat-details tilt-card-content">
                 <h4>Reputation</h4>
                 <p>1,250+</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By / Wall of Fame -->
+    <div class="trusted-by">
+        <p>RECOGNIZED & REWARDED BY</p>
+        <div class="marquee hover-target">
+            <div class="marquee-content">
+                <span>GOOGLE VRP</span>
+                <span>HACKERONE</span>
+                <span>BUGCROWD</span>
+                <span>FORTUNE 500</span>
+                <span>GLOBAL FINTECH</span>
+                <span>GOOGLE VRP</span>
+                <span>HACKERONE</span>
+                <span>BUGCROWD</span>
+                <span>FORTUNE 500</span>
+                <span>GLOBAL FINTECH</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certifications / Digital Badges -->
+    <section class="section-container">
+        <h2 class="section-title">Verified <span>Credentials</span></h2>
+        <div class="badges-container">
+            <div class="cert-badge hover-target">
+                <div class="badge-ring"></div>
+                <div class="badge-content">OSCP</div>
+                <div class="badge-label">OffSec Certified</div>
+            </div>
+            <div class="cert-badge hover-target">
+                <div class="badge-ring" style="border-color: var(--accent-cyan);"></div>
+                <div class="badge-content" style="color: var(--accent-cyan);">G-VRP</div>
+                <div class="badge-label">Google Bug Hunter</div>
+            </div>
+            <div class="cert-badge hover-target">
+                <div class="badge-ring" style="border-color: #ff0055;"></div>
+                <div class="badge-content" style="color: #ff0055;">CEH</div>
+                <div class="badge-label">Master Certified</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-container" id="services">
+        <h2 class="section-title">Offensive <span>Services</span></h2>
+        <div class="services-grid">
+            <div class="service-card hover-target">
+                <div class="service-icon">🌐</div>
+                <h3>Web App Pentesting</h3>
+                <p>Mendeteksi dan mengeksploitasi celah kritis (OWASP Top 10, SSRF, SQLi) pada aplikasi web kompleks sebelum pihak tidak bertanggung jawab menemukannya.</p>
+            </div>
+            <div class="service-card hover-target">
+                <div class="service-icon">📱</div>
+                <h3>Mobile Reverse Engineering</h3>
+                <p>Membongkar (Decompile) aplikasi Android/iOS untuk menemukan kebocoran API Key, token hardcoded, dan celah logika pada endpoint mobile.</p>
+            </div>
+            <div class="service-card hover-target">
+                <div class="service-icon">☁️</div>
+                <h3>Cloud Security Audit</h3>
+                <p>Melakukan audit konfigurasi mendalam pada infrastruktur AWS/GCP untuk mencegah kebocoran data sensitif dari Bucket S3 dan IAM Misconfigurations.</p>
             </div>
         </div>
     </section>

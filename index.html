@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Specialist Portfolio</title>
+    <meta name="description" content="Portfolio Professional Cybersecurity Specialist & Penetration Tester. Hubungi untuk kolaborasi dan pekerjaan remote.">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050810;
+            --bg-secondary: #0a0e17;
+            --bg-card: rgba(10, 14, 23, 0.6);
+            --accent-neon: #00ff66;
+            --accent-cyan: #00e5ff;
+            --accent-red: #ff3860;
+            --text-main: #e2e8f0;
+            --text-muted: #8b9bb4;
+            --border-glow: rgba(0, 255, 102, 0.25);
+            --shadow-glow: 0 0 20px rgba(0, 255, 102, 0.2);
+            --shadow-cyan: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 102, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-neon);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid var(--accent-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            mix-blend-mode: difference;
+        }
+        
+        .custom-cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-neon);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-hover {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 229, 255, 0.1);
+            border-color: var(--accent-neon);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(0, 255, 102, 0.06) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 10s infinite alternate-reverse;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Matrix Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 8, 16, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-neon);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: var(--shadow-glow);
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+            text-shadow: var(--shadow-cyan);
+        }
+
+        .logo::before {
+            content: '>';
+            color: var(--text-muted);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-neon));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent-neon);
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--accent-neon);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            color: var(--accent-neon);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 102, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 102, 0.1);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 7rem 2rem 5rem 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            position: relative;
+        }
+
+        /* Decorative Cyberpunk Elements */
+        .cyber-deco-top {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 100px;
+            height: 20px;
+            border-top: 2px solid var(--accent-cyan);
+            border-left: 2px solid var(--accent-cyan);
+            opacity: 0.5;
+        }
+        
+        .cyber-deco-bottom {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 100px;
+            height: 20px;
+            border-bottom: 2px solid var(--accent-neon);
+            border-right: 2px solid var(--accent-neon);
+            opacity: 0.5;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        /* Glitch Effect on Title */
+        .glitch-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .glitch {
+            position: relative;
+            color: var(--text-main);
+            z-index: 1;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--accent-red);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--accent-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(13px, 9999px, 83px, 0); }
+            5% { clip: rect(69px, 9999px, 92px, 0); }
+            10% { clip: rect(31px, 9999px, 12px, 0); }
+            15% { clip: rect(54px, 9999px, 9px, 0); }
+            20% { clip: rect(81px, 9999px, 16px, 0); }
+            25% { clip: rect(7px, 9999px, 41px, 0); }
+            100% { clip: rect(7px, 9999px, 41px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(30px, 9999px, 82px, 0); }
+            25% { clip: rect(1px, 9999px, 94px, 0); }
+            100% { clip: rect(1px, 9999px, 94px, 0); }
+        }
+
+        .hero-text h1 span.highlight {
+            background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+        }
+
+        .hero-subtitle {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-cyan);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Typewriter Effect Element */
+        #typewriter {
+            border-right: 2px solid var(--accent-cyan);
+            padding-right: 4px;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            text-align: justify;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-neon), #00cc55);
+            color: var(--bg-primary);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 255, 102, 0.3);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 102, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-cyan);
+        }
+
+        /* Interactive Shell Terminal Widget */
+        .terminal-widget {
+            background: #030508;
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 229, 255, 0.1);
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Fira Code', monospace;
+            position: relative;
+        }
+        
+        .terminal-widget::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .terminal-header {
+            background: #0b101a;
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
+        .dot-yellow { background-color: #ffb86c; box-shadow: 0 0 10px #ffb86c; }
+        .dot-green { background-color: var(--accent-neon); box-shadow: 0 0 10px var(--accent-neon); }
+
+        .terminal-title {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            flex: 1;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .terminal-history {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .terminal-welcome {
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+        }
+
+        .terminal-line {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-neon);
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .terminal-input-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: inherit;
+            flex: 1;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Common Section Styles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title span {
+            color: var(--accent-cyan);
+            text-shadow: var(--shadow-cyan);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-neon));
+            box-shadow: 0 0 15px var(--accent-neon);
+            border-radius: 2px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        /* Vanilla Tilt Effect Class */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        .tilt-card-content {
+            transform: translateZ(30px);
+        }
+
+        /* Stats Cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: rgba(10, 14, 23, 0.8);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: var(--shadow-cyan);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background: rgba(0, 255, 102, 0.08);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-neon);
+        }
+
+        .stat-details h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .stat-details p {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(0,229,255,0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .skill-card:hover::after { opacity: 1; }
+
+        .skill-card:hover {
+            border-color: rgba(0, 255, 102, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 255, 102, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--accent-neon);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(0,255,102,0.4));
+        }
+
+        .skill-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-neon);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(0, 255, 102, 0.15);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Tooling Showcase Section */
+        .toolkit-board {
+            background: rgba(10, 14, 23, 0.5);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        .toolkit-board::before {
+            content: '[SYSTEM TOOLS]';
+            position: absolute;
+            top: -12px; left: 30px;
+            background: var(--bg-primary);
+            padding: 0 10px;
+            color: var(--accent-cyan);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-badge::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .tool-badge:hover::after { width: 100%; }
+
+        .tool-badge:hover {
+            background: rgba(0, 229, 255, 0.05);
+            border-color: rgba(0, 229, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .tool-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .tool-cat {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* POC Simulator - Premium Feature */
+        .poc-simulator {
+            background: linear-gradient(180deg, #090d16 0%, #050810 100%);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0,255,102,0.05);
+            position: relative;
+        }
+
+        .poc-badge {
+            position: absolute;
+            top: -14px;
+            left: 40px;
+            background: var(--accent-neon);
+            color: var(--bg-primary);
+            padding: 4px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-family: 'Fira Code', monospace;
+            box-shadow: 0 0 15px var(--accent-neon);
+        }
+
+        .poc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .poc-demo-screen {
+            background: #020305;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            height: 320px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        
+        .poc-demo-screen::before {
+            content: 'TERMINAL_OUTPUT';
+            position: absolute;
+            top: 5px; right: 10px;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.1);
+        }
+
+        .poc-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .poc-controls h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .poc-controls p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .poc-select {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            color: var(--text-main);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300ff66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .poc-select:focus, .poc-select:hover {
+            border-color: var(--accent-neon);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Writeups Section */
+        .writeup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .writeup-card {
+            background: linear-gradient(to bottom right, rgba(10, 14, 23, 0.9), rgba(5, 8, 16, 0.95));
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .writeup-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+        }
+
+        .writeup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .h1-badge { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+        .bc-badge { background: rgba(255, 115, 0, 0.1); color: #ff7300; border: 1px solid rgba(255, 115, 0, 0.3); }
+        .private-badge { background: rgba(138, 43, 226, 0.1); color: #8a2be2; border: 1px solid rgba(138, 43, 226, 0.3); }
+
+        .bounty-amt {
+            color: var(--accent-neon);
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-shadow: var(--shadow-glow);
+        }
+
+        .writeup-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .writeup-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .writeup-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1.5rem;
+        }
+
+        .severity-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .severity-badge::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+        }
+
+        .critical::before { background-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+        .high::before { background-color: #ff3860; box-shadow: 0 0 10px #ff3860; }
+        .medium::before { background-color: #ffb86c; box-shadow: 0 0 10px #ffb86c; }
+
+        .read-more {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:hover {
+            color: var(--accent-neon);
+            text-shadow: var(--shadow-glow);
+        }
+
+        .read-more span {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover span {
+            transform: translateX(4px);
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20px;
+            width: 2px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-neon), transparent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 3.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 5px; left: 14px;
+            width: 14px; height: 14px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-neon);
+            border-radius: 50%;
+            box-shadow: var(--shadow-glow);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--accent-neon);
+            transform: scale(1.3);
+        }
+
+        .timeline-content {
+            background: rgba(10, 14, 23, 0.4);
+            border: 1px solid rgba(0, 255, 102, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateX(5px);
+        }
+
+        .timeline-date {
+            color: var(--accent-cyan);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Secure Contact Form */
+        .secure-contact {
+            background: rgba(5, 8, 16, 0.95);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-top: 5rem;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .secure-contact::before {
+            content: '[ E2E SECURE CHANNEL ]';
+            position: absolute;
+            top: -12px; left: 30px;
+            background: var(--bg-primary);
+            color: var(--accent-red);
+            padding: 0 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .pgp-block {
+            background: #020305;
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: rgba(0, 255, 102, 0.6);
+            white-space: pre-wrap;
+            word-break: break-all;
+            height: 200px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 4px;
+            padding: 1rem;
+            color: var(--accent-cyan);
+            font-family: 'Fira Code', monospace;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+        }
+
+        .input-group label {
+            position: absolute;
+            top: -10px; left: 15px;
+            background: rgba(5, 8, 16, 1);
+            padding: 0 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-encrypt {
+            background: transparent;
+            border: 1px solid var(--accent-neon);
+            color: var(--accent-neon);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-encrypt:hover {
+            background: rgba(0, 255, 102, 0.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Remote Ready Section */
+        .remote-banner {
+            background: linear-gradient(135deg, rgba(10, 14, 23, 0.9), rgba(5, 8, 16, 0.95));
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 20px;
+            padding: 5rem 3rem;
+            text-align: center;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .remote-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+        }
+
+        .remote-badge {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            display: inline-block;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-cyan);
+        }
+
+        .remote-banner h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .remote-features {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .remote-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 250px;
+        }
+
+        .remote-feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-neon);
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 0 10px rgba(0,255,102,0.3));
+        }
+
+        .remote-feature h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .remote-feature p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Social Sidebar */
+        .social-sidebar {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 99;
+        }
+
+        .social-sidebar a {
+            background: rgba(5, 8, 16, 0.8);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--text-muted);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-sidebar a:hover {
+            border-color: var(--accent-neon);
+            color: var(--accent-neon);
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.1) translateX(5px);
+        }
+
+        /* Testimonial Block */
+        .testimonial-block {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(0, 255, 102, 0.05));
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: -20px; right: 30px;
+            font-size: 6rem;
+            color: rgba(0, 255, 102, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+        }
+
+        .testimonial-author h4 {
+            color: var(--accent-neon);
+            margin-bottom: 2px;
+        }
+
+        .testimonial-author p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Mobile Menu Setup */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .mobile-toggle span {
+            width: 25px; height: 2px;
+            background-color: var(--accent-neon);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-only { display: none; }
+
+        /* Responsive Adjustments */
+        @media (max-width: 968px) {
+            .mobile-toggle { display: flex; }
+            .desktop-only { display: none; }
+            
+            #main-nav {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 70%; height: 100vh;
+                background: rgba(5, 8, 16, 0.98);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.4s ease;
+                border-left: 1px solid rgba(0, 255, 102, 0.2);
+            }
+            
+            #main-nav.active { right: 0; }
+            
+            #main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            
+            .mobile-only { display: block; }
+            
+            .social-sidebar {
+                top: auto;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: row;
+                background: rgba(5, 8, 16, 0.9);
+                padding: 10px 20px;
+                border-radius: 30px;
+                border: 1px solid rgba(0, 229, 255, 0.2);
+            }
+            
+            .social-sidebar a:hover { transform: translateY(-5px); }
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            .poc-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .remote-features { gap: 2rem; }
+            .custom-cursor { display: none; } /* Disable custom cursor on smaller screens/touch */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Floating Social Links -->
+    <div class="social-sidebar">
+        <a href="https://bughunters.google.com/profile/a67ac15c-bacc-4944-b54c-ae12321cd0e1" target="_blank" rel="noopener noreferrer" title="Google Bug Hunters" class="hover-target">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </a>
+    </div>
+
+    <!-- Custom Cursor Element -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Dynamic Matrix Background -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Sec<span>Ops</span></a>
+            
+            <div class="mobile-toggle hover-target" id="mobile-toggle">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#about" class="hover-target">Tentang</a></li>
+                    <li><a href="#skills" class="hover-target">Keahlian</a></li>
+                    <li><a href="#projects" class="hover-target">Portofolio</a></li>
+                    <li><a href="#remote" class="hover-target">Remote Ready</a></li>
+                    <li class="mobile-only"><a href="#contact" class="hover-target">Download CV</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="nav-btn hover-target desktop-only" onclick="alert('Mengunduh CV... (Simulasi)')">Download CV</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="cyber-deco-top"></div>
+        <div class="cyber-deco-bottom"></div>
+        
+        <div class="hero-text">
+            <div class="hero-subtitle">
+                <span>⚡</span> <span id="typewriter"></span>
+            </div>
+            <h1>Hi, saya <br><span class="highlight glitch-wrapper"><span class="glitch" data-text="Cyber Phantom">Cyber Phantom</span></span></h1>
+            <p class="hero-desc">
+                Spesialis Penetration Testing dan Keamanan Siber. Berpengalaman dalam menemukan celah kritis (OWASP Top 10, Cloud config, API Vulnerabilities) serta merancang infrastruktur pertahanan yang kokoh untuk sistem remote/hybrid.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn-primary hover-target">Lihat Portofolio</a>
+                <a href="#contact" class="btn-secondary hover-target">Hubungi Saya</a>
+            </div>
+        </div>
+
+        <!-- Terminal Widget -->
+        <div class="terminal-widget tilt-card hover-target">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+                <div class="terminal-title">guest@phantom-sec:~</div>
+                <div></div>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div class="terminal-welcome">
+                    ==================================================<br>
+                    Cyber Phantom ID Interactive Shell Portfolio v2.0<br>
+                    Ketik 'help' untuk melihat daftar perintah.<br>
+                    ==================================================
+                </div>
+                <div class="terminal-history" id="terminal-history"></div>
+                <div class="terminal-input-container">
+                    <span class="terminal-prompt">guest@phantom-sec:~$</span>
+                    <input type="text" class="terminal-input hover-target" id="terminal-input" placeholder="Type a command..." autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-row">
+        <div class="stat-card tilt-card hover-target">
+            <div class="stat-icon tilt-card-content">👑</div>
+            <div class="stat-details tilt-card-content">
+                <h4>HackerOne Rank</h4>
+                <p>Top 1%</p>
+            </div>
+        </div>
+        <div class="stat-card tilt-card hover-target">
+            <div class="stat-icon tilt-card-content">🛡️</div>
+            <div class="stat-details tilt-card-content">
+                <h4>Bugs Resolved</h4>
+                <p>150+</p>
+            </div>
+        </div>
+        <div class="stat-card tilt-card hover-target">
+            <div class="stat-icon tilt-card-content">🔑</div>
+            <div class="stat-details tilt-card-content">
+                <h4>CVEs Found</h4>
+                <p>3 Active</p>
+            </div>
+        </div>
+        <div class="stat-card tilt-card hover-target">
+            <div class="stat-icon tilt-card-content">⚡</div>
+            <div class="stat-details tilt-card-content">
+                <h4>Reputation</h4>
+                <p>4,820</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section-container" id="skills">
+        <h2 class="section-title">Keahlian <span class="glitch" data-text="Teknis">Teknis</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="skill-icon">🛡️</div>
+                    <h3>Web & Mobile Pentesting</h3>
+                    <p>Mengidentifikasi kerentanan logic, API Bypass, IDOR, SQLi, dan XSS pada website maupun aplikasi Android menggunakan tool standar industri.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OWASP 10</span>
+                        <span class="skill-tag">BurpSuite</span>
+                        <span class="skill-tag">Jadx</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Cloud & Infrastructure</h3>
+                    <p>Melakukan audit konfigurasi AWS S3, GCP, dan Firebase untuk mencegah data leak dan eksploitasi Out-of-Band (OOB).</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Automation & Scripting</h3>
+                    <p>Mendevelop tools kustom menggunakan Python, Bash, dan Go untuk mengotomatisasi pemindaian berskala besar secara efisien.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Nuclei</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolkit Showcase -->
+        <div class="toolkit-board" id="tools">
+            <div class="toolkit-title">
+                <span>🔧</span> Hacking Toolkit & Standard Tools
+            </div>
+            <div class="toolkit-grid">
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Burp Suite</span>
+                    <span class="tool-cat">Web Proxy / Pentest</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Nuclei</span>
+                    <span class="tool-cat">Vulnerability Scan</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Subfinder</span>
+                    <span class="tool-cat">Reconnaissance</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Httpx</span>
+                    <span class="tool-cat">Web Probing</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Ffuf</span>
+                    <span class="tool-cat">Web Fuzzing</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Sqlmap</span>
+                    <span class="tool-cat">Database Exploit</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Nmap</span>
+                    <span class="tool-cat">Network Scanning</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Wireshark</span>
+                    <span class="tool-cat">Traffic Analysis</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Metasploit</span>
+                    <span class="tool-cat">Exploit Framework</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">Apktool & Jadx</span>
+                    <span class="tool-cat">Mobile Reverse</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">BloodHound</span>
+                    <span class="tool-cat">Active Directory</span>
+                </div>
+                <div class="tool-badge hover-target">
+                    <span class="tool-name">AWS CLI / Pacu</span>
+                    <span class="tool-cat">Cloud Security</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POC Simulator Section -->
+    <section class="section-container" id="projects">
+        <h2 class="section-title">Exploit <span>Simulator</span></h2>
+        <div class="poc-simulator">
+            <div class="poc-badge">Interactive System</div>
+            <div class="poc-grid">
+                <div class="poc-controls">
+                    <h3>Simulasi Kerentanan</h3>
+                    <p>Coba pilih tipe exploit siber di bawah untuk melihat visualisasi alur eksploitasi serangan siber secara interaktif dan cara mitigasinya.</p>
+                    <select class="poc-select hover-target" id="exploit-select">
+                        <option value="">-- Pilih Simulasi Exploit --</option>
+                        <option value="sqli">SQL Injection (SQLi) Bypass</option>
+                        <option value="ssrf">Server-Side Request Forgery (SSRF)</option>
+                        <option value="idor">IDOR (Insecure Direct Object Reference)</option>
+                    </select>
+                </div>
+                <div class="poc-demo-screen" id="poc-screen">
+                    <div style="color: var(--text-muted)">[System] Menunggu pilihan simulasi dari Anda...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bug Bounty Writeups Section -->
+    <section class="section-container" id="writeups">
+        <h2 class="section-title">Bug Bounty <span class="glitch" data-text="Writeups">Writeups</span></h2>
+        <div class="writeup-grid">
+            <div class="writeup-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="writeup-header">
+                        <span class="platform-badge h1-badge">HackerOne</span>
+                        <span class="bounty-amt">+$3,500</span>
+                    </div>
+                    <h3>Account Takeover via OAuth Misconfiguration</h3>
+                    <p>Ditemukan kerentanan pada alur login OAuth perusahaan Fortune 500 yang memungkinkan pengambilalihan akun secara massal tanpa interaksi pengguna.</p>
+                    <div class="writeup-footer">
+                        <span class="severity-badge critical">Critical (CVSS 9.8)</span>
+                        <a href="#" class="read-more" onclick="alert('Membuka PDF Laporan... (Simulasi)')">View Report <span>&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="writeup-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="writeup-header">
+                        <span class="platform-badge bc-badge">Bugcrowd</span>
+                        <span class="bounty-amt">+$1,200</span>
+                    </div>
+                    <h3>Blind SSRF to AWS Metadata Leak</h3>
+                    <p>Bypass filter URL pada fitur Webhook yang berujung pada ekstraksi kredensial AWS IAM dari instance EC2 internal perusahaan.</p>
+                    <div class="writeup-footer">
+                        <span class="severity-badge high">High (CVSS 8.5)</span>
+                        <a href="#" class="read-more" onclick="alert('Membuka Artikel Medium... (Simulasi)')">Read Article <span>&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="writeup-card tilt-card hover-target">
+                <div class="tilt-card-content">
+                    <div class="writeup-header">
+                        <span class="platform-badge private-badge">Private VDP</span>
+                        <span class="bounty-amt">Hall of Fame</span>
+                    </div>
+                    <h3>Stored XSS on Admin Dashboard</h3>
+                    <p>Menemukan celah injeksi XSS pada field profil pengguna yang tereksekusi ketika administrator me-review laporan profil di dasbor.</p>
+                    <div class="writeup-footer">
+                        <span class="severity-badge medium">Medium (CVSS 6.1)</span>
+                        <a href="#" class="read-more" onclick="alert('Membuka Bukti Video... (Simulasi)')">Watch PoC <span>&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Triage Testimonial -->
+        <div class="testimonial-block tilt-card hover-target">
+            <div class="tilt-card-content">
+                <span class="quote-icon">"</span>
+                <p class="testimonial-text">Laporan dari Cyber Phantom selalu detail, akurat, dan sangat membantu tim internal kami. PoC yang diberikan langsung merepresentasikan *real-world impact* dengan langkah repro yang jelas. Salah satu peneliti keamanan yang luar biasa dan sangat kami apresiasi kontribusinya.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">G</div>
+                    <div>
+                        <h4>Security Triager</h4>
+                        <p>Google Bug Hunters Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification & Journey Timeline -->
+    <section class="section-container" id="certifications">
+        <h2 class="section-title">Lisensi & <span class="glitch" data-text="Timeline">Timeline</span></h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-item hover-target">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2025 - Present</div>
+                    <h3>Offensive Security Certified Professional (OSCP)</h3>
+                    <p>Memperoleh sertifikasi prestisius di bidang penetration testing dengan lulus ujian praktik membobol mesin Active Directory dan mesin standalone dalam waktu 24 jam.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item hover-target">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2024</div>
+                    <h3>Top 100 HackerOne Leaderboard</h3>
+                    <p>Masuk ke dalam jajaran 100 besar global peretas etis di platform HackerOne berkat penemuan bug kritis secara konsisten di program-program publik maupun privat.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item hover-target">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2023</div>
+                    <h3>Certified Ethical Hacker (CEH) Master</h3>
+                    <p>Menyelesaikan tantangan audit keamanan jaringan dan web, membangun fondasi kuat pada metodologi standar keamanan siber internasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remote Work Ready Section -->
+    <section class="section-container" id="remote">
+        <div class="remote-banner hover-target">
+            <div class="remote-badge">Global & Remote Collaboration</div>
+            <h2>Siap Berkolaborasi Secara Remote</h2>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+                Saya terbiasa bekerja secara asinkronus, menjaga kepatuhan pelaporan waktu yang ketat, terdokumentasi dengan baik, dan fasih menggunakan standard industri keamanan global.
+            </p>
+            <div class="remote-features">
+                <div class="remote-feature">
+                    <span class="remote-feature-icon">🌐</span>
+                    <h4>Skala Global</h4>
+                    <p>Bekerja lintas zona waktu dengan kemandirian penuh dan komunikasi transparan.</p>
+                </div>
+                <div class="remote-feature">
+                    <span class="remote-feature-icon">📝</span>
+                    <h4>Professional Report</h4>
+                    <p>Pelaporan berstandar industri dengan format terperinci siap kirim ke level C-Suite.</p>
+                </div>
+                <div class="remote-feature">
+                    <span class="remote-feature-icon">⏱️</span>
+                    <h4>Response Time</h4>
+                    <p>SLA respon cepat dan siap menangani mitigasi insiden siber krusial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure Contact & PGP -->
+    <section class="section-container" id="contact">
+        <h2 class="section-title">Initiate <span class="glitch" data-text="Handshake">Handshake</span></h2>
+        <div class="secure-contact">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Secure Comm Channel</h3>
+                    <p>Membutuhkan konsultasi keamanan siber atau tawaran pekerjaan remote? Gunakan E2E channel ini atau gunakan PGP Public Key di bawah untuk komunikasi yang 100% aman.</p>
+                    <div class="pgp-block tilt-card hover-target"><div class="tilt-card-content">-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: OpenPGP.js v4.10.10
+Comment: https://openpgpjs.org
+
+xsBNBGI4PcwBCADi1XUuO/t3w9lP+r2m5p0pX1...
+[ SIMULATED PGP KEY DATA - FAKE FOR PORTFOLIO ]
+qwe1r2t3y4u5i6o7p8a9s0d1f2g3h4j5k6l7z8...
++m9n0b1v2c3x4z5l6k7j8h9g0f1d2s3a4p5o6...
+aB1cD2eF3gH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ...
+-----END PGP PUBLIC KEY BLOCK-----</div></div>
+                </div>
+                <form class="contact-form" id="secure-form" action="https://formsubmit.co/ardiansahmotorejo130296@gmail.com" method="POST" target="_blank" onsubmit="setTimeout(encryptAndSendVisual, 10);">
+                    <input type="hidden" name="_subject" value="New Secure Mission Offer">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="input-group">
+                        <label>EMAIL_PENGIRIM</label>
+                        <input type="email" id="contact-email" name="email" class="hover-target" required placeholder="recruiter@company.com">
+                    </div>
+                    <div class="input-group">
+                        <label>PAYLOAD_PESAN</label>
+                        <textarea id="contact-msg" name="message" class="hover-target" required placeholder="Tuliskan tawaran atau pesan Anda di sini..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-encrypt hover-target" id="btn-submit">
+                        <span id="btn-text">ENCRYPT & SEND</span> 🔒
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>>_ Cyber Phantom ID &copy; 2026. Built with Vanilla JS & Security Mindset.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Start Typewriter directly without waiting for boot screen
+        const twElement = document.getElementById('typewriter');
+        const twText = "Cybersecurity Engineer & Pentester";
+        let twIndex = 0;
+
+        function startTypewriter() {
+            if (twIndex < twText.length) {
+                twElement.innerHTML += twText.charAt(twIndex);
+                twIndex++;
+                setTimeout(startTypewriter, 50);
+            }
+        }
+        
+        window.onload = () => {
+            setTimeout(startTypewriter, 300);
+        };
+
+        // --- Custom Cursor Logic ---
+        const cursor = document.getElementById('cursor');
+        const hoverTargets = document.querySelectorAll('.hover-target, a, button, select, input');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            target.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // --- Vanilla 3D Tilt Effect ---
+        const cards = document.querySelectorAll('.tilt-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = \`perspective(1000px) rotateX(\${rotateX}deg) rotateY(\${rotateY}deg) scale3d(1.02, 1.02, 1.02)\`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = \`perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)\`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+
+        // --- Matrix Rain Canvas Effect ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const drawMatrix = () => {
+            ctx.fillStyle = 'rgba(5, 8, 16, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff66';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // --- Terminal Logic ---
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalHistory = document.getElementById('terminal-history');
+        const terminalOutput = document.getElementById('terminal-output');
+
+        const commands = {
+            help: `Daftar perintah:<br>
+                   - <b>whoami</b>: Info profil<br>
+                   - <b>skills</b>: Keahlian teknis<br>
+                   - <b>cat resume.pdf</b>: Lihat CV<br>
+                   - <b>sudo hire_me</b>: Eksekusi tawaran kerja<br>
+                   - <b>scan_network</b>: Pindai infrastruktur (Simulasi)<br>
+                   - <b>clear</b>: Bersihkan layar`,
+            whoami: `Cyber Phantom ID - Security Specialist.<br>
+                    Siap berkontribusi secara remote global.`,
+            skills: `Pentesting Web & API, Cloud Audit, Automation Scripting.`,
+            'cat resume.pdf': `<span style="color: var(--text-muted)">[PDF Parsing...]</span><br>
+                               Nama: Cyber Phantom ID<br>
+                               Posisi: Remote Bug Hunter & Pentester<br>
+                               Sertifikasi: OSCP, CEH<br>
+                               <span style="color: var(--accent-cyan)">> Gunakan form kontak di bawah untuk meminta CV asli.</span>`,
+            'sudo hire_me': `<span style="color: var(--accent-neon); font-weight: bold;">[ACCESS GRANTED]</span><br>
+                             Excellent choice! You are about to hire a top-tier security professional.<br>
+                             Initiating secure handshake protocols... Please scroll down to the Contact Section.`,
+        };
+
+        terminalInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const cmd = this.value.trim().toLowerCase();
+                this.value = '';
+
+                const promptLine = document.createElement('div');
+                promptLine.className = 'terminal-line';
+                promptLine.innerHTML = `<span class="terminal-prompt">guest@phantom-sec:~$</span> <span>${cmd}</span>`;
+                terminalHistory.appendChild(promptLine);
+
+                const resultLine = document.createElement('div');
+                if (cmd === 'clear') {
+                    terminalHistory.innerHTML = '';
+                } else if (cmd === 'scan_network') {
+                    resultLine.innerHTML = `<span style="color: var(--accent-cyan)">Starting Nmap 7.93 ( https://nmap.org )</span><br>`;
+                    terminalHistory.appendChild(resultLine);
+                    
+                    let dots = 0;
+                    const scanInterval = setInterval(() => {
+                        const loadingLine = document.createElement('div');
+                        loadingLine.style.color = 'var(--text-muted)';
+                        loadingLine.innerText = `Scanning target... port ${Math.floor(Math.random() * 65535)} [${Math.random() > 0.5 ? 'open' : 'filtered'}]`;
+                        terminalHistory.appendChild(loadingLine);
+                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                        dots++;
+                        
+                        if(dots > 4) {
+                            clearInterval(scanInterval);
+                            const doneLine = document.createElement('div');
+                            doneLine.innerHTML = `<span style="color: var(--accent-neon)">Nmap done: 1 IP address (1 host up) scanned in 4.23 seconds.</span>`;
+                            terminalHistory.appendChild(doneLine);
+                            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                        }
+                    }, 600);
+                    
+                } else if (commands[cmd]) {
+                    resultLine.innerHTML = commands[cmd];
+                    terminalHistory.appendChild(resultLine);
+                } else if (cmd !== '') {
+                    resultLine.innerHTML = `<span style="color: var(--accent-red)">Command not found: ${cmd}</span>`;
+                    terminalHistory.appendChild(resultLine);
+                }
+
+                setTimeout(() => { terminalOutput.scrollTop = terminalOutput.scrollHeight; }, 50);
+            }
+        });
+        
+        // --- Secure Messaging / Encryption Simulation ---
+        function encryptAndSendVisual() {
+            const btn = document.getElementById('btn-submit');
+            const btnText = document.getElementById('btn-text');
+            const msgBox = document.getElementById('contact-msg');
+            const senderBox = document.getElementById('contact-email');
+            const originalMsg = msgBox.value;
+            
+            if(!originalMsg) return;
+            
+            btn.disabled = true;
+            btn.style.borderColor = 'var(--accent-red)';
+            btn.style.color = 'var(--accent-red)';
+            btnText.innerText = 'ENCRYPTING...';
+            
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+            let iterations = 0;
+            
+            const scramble = setInterval(() => {
+                let scrambled = '';
+                for(let i=0; i < originalMsg.length; i++) {
+                    scrambled += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                msgBox.value = scrambled;
+                iterations++;
+                
+                if (iterations > 15) {
+                    clearInterval(scramble);
+                    msgBox.value = '-----BEGIN PGP MESSAGE-----\n' + btoa(originalMsg + Date.now()).substring(0, 50) + '...\n-----END PGP MESSAGE-----';
+                    
+                    setTimeout(() => {
+                        btn.style.borderColor = 'var(--accent-cyan)';
+                        btn.style.color = 'var(--accent-cyan)';
+                        btnText.innerText = 'PAYLOAD SENT SUCCESSFULLY';
+                        
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            btn.style.borderColor = 'var(--accent-neon)';
+                            btn.style.color = 'var(--accent-neon)';
+                            btnText.innerText = 'ENCRYPT & SEND';
+                            msgBox.value = '';
+                            senderBox.value = '';
+                        }, 3000);
+                    }, 500);
+                }
+            }, 60);
+        }
+
+        // --- Mobile Menu Toggle ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            
+            // Animate hamburger
+            const spans = mobileToggle.querySelectorAll('span');
+            if(mainNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close menu on link click
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(mainNav.classList.contains('active')) {
+                    mobileToggle.click();
+                }
+            });
+        });
+
+        // --- POC Exploit Simulator Logic ---
+        const exploitSelect = document.getElementById('exploit-select');
+        const pocScreen = document.getElementById('poc-screen');
+
+        const simulations = {
+            sqli: [
+                { text: "[*] Inisiasi serangan SQL Injection Bypass...", color: "var(--text-muted)" },
+                { text: "[+] Mengirim Payload: admin' OR '1'='1", color: "var(--accent-cyan)" },
+                { text: "[+] SUCCESS: Bypass login berhasil. Masuk sebagai Administrator.", color: "var(--accent-neon)", bold: true }
+            ],
+            ssrf: [
+                { text: "[*] Inisiasi serangan SSRF Cloud Metadata...", color: "var(--text-muted)" },
+                { text: "[+] Mengirim request ke AWS Metadata IP...", color: "var(--accent-cyan)" },
+                { text: "[+] KONEKSI BERHASIL: Mendapatkan data AWS IAM Credentials!", color: "var(--accent-neon)", bold: true }
+            ],
+            idor: [
+                { text: "[*] Inisiasi pengujian kerentanan IDOR...", color: "var(--text-muted)" },
+                { text: "[+] Endpoint: POST /api/v1/update_profile {'id': 1001}", color: "var(--accent-cyan)" },
+                { text: "[!] Kritis: Modifikasi profil user lain berhasil!", color: "var(--accent-red)", bold: true }
+            ]
+        };
+
+        exploitSelect.addEventListener('change', function() {
+            const val = this.value;
+            pocScreen.innerHTML = '';
+            
+            if (!val || !simulations[val]) {
+                pocScreen.innerHTML = '<div style="color: var(--text-muted)">[System] Menunggu pilihan simulasi...</div>';
+                return;
+            }
+
+            let index = 0;
+            const sim = simulations[val];
+
+            function runLine() {
+                if (index < sim.length) {
+                    const line = document.createElement('div');
+                    line.style.color = sim[index].color;
+                    if (sim[index].bold) { line.style.fontWeight = 'bold'; }
+                    line.innerHTML = sim[index].text;
+                    pocScreen.appendChild(line);
+                    pocScreen.scrollTop = pocScreen.scrollHeight;
+                    index++;
+                    setTimeout(runLine, 800);
+                }
+            }
+
+            runLine();
+        });
+    </script>
+</body>
+</html>
